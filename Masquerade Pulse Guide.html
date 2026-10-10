@@ -1,0 +1,702 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Masquerade Pulse Guide</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&family=Jost:wght@400..600&family=Newsreader:ital,opsz,wght@0,6..72,400..700;1,6..72,400..700&display=swap">
+<style>
+/* Layout: one reading column beside a margin rail of section labels. The six entry times are the only oversized element.
+   Light theme is white tie, dark theme is black tie, and the single red is the wax seal on the notes. */
+:root{
+  --ground:#f3f3f6; --surface:#ffffff; --ink:#131218; --ink-soft:#45434e; --mute:#62606c;
+  --rule:#cfced6; --rule-strong:#131218; --bar:#dcdbe2;
+  --rose:#a1122b; --rose-display:#a1122b; --rose-fill:#a1122b; --on-rose:#ffffff; --seal-ring:rgba(255,255,255,.28);
+  --display:"Bodoni Moda","Bodoni 72","Didot","Times New Roman",serif;
+  --text:"Newsreader","Iowan Old Style","Palatino Linotype",Georgia,serif;
+  --label:"Jost","Futura","Avenir Next","Century Gothic",system-ui,sans-serif;
+  --s-label:.72rem; --s-body:1.0625rem; --s-lead:1.2rem; --s-name:1.5rem;
+  --s-h2:clamp(2.1rem,9vw,3.25rem); --s-time:clamp(3.2rem,15vw,4.75rem); --s-h1:clamp(3.1rem,15vw,6.5rem);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --ground:#0b0a0e; --surface:#17161c; --ink:#f2f1f5; --ink-soft:#c2c0cb; --mute:#9a98a6;
+    --rule:#302e39; --rule-strong:#f2f1f5; --bar:#2a2832;
+    --rose:#ff6a82; --rose-display:#f0405a; --rose-fill:#b81a36; --on-rose:#ffffff; --seal-ring:rgba(255,255,255,.28);
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --ground:#0b0a0e; --surface:#17161c; --ink:#f2f1f5; --ink-soft:#c2c0cb; --mute:#9a98a6;
+  --rule:#302e39; --rule-strong:#f2f1f5; --bar:#2a2832;
+  --rose:#ff6a82; --rose-display:#f0405a; --rose-fill:#b81a36; --on-rose:#ffffff; --seal-ring:rgba(255,255,255,.28);
+  color-scheme:dark;
+}
+
+*,*::before,*::after{box-sizing:border-box}
+body{background:var(--ground);color:var(--ink);font-family:var(--text);font-size:var(--s-body);line-height:1.55;-webkit-text-size-adjust:100%;text-rendering:optimizeLegibility}
+p,h1,h2,h3,ul,ol,dl,dd,figure{margin:0}
+ul{padding:0;list-style:none}
+a{color:inherit;text-decoration-color:var(--rose);text-decoration-thickness:1px;text-underline-offset:.2em}
+i,cite{font-style:italic}
+:focus-visible{outline:2px solid var(--rose);outline-offset:3px}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{transition:none!important;scroll-behavior:auto!important}}
+
+.page{max-width:68rem;margin-inline:auto;padding-inline:1.125rem;padding-block:1.25rem 4.5rem;display:flex;flex-direction:column;gap:3rem}
+.page::before{content:"";display:block;height:8px;border-top:4px solid var(--rule-strong);border-bottom:1px solid var(--rule-strong);margin-bottom:-1.5rem}
+
+/* Sections: label rail + body */
+.sec{display:grid;gap:.9rem}
+.sec + .sec{border-top:1px solid var(--rule);padding-top:1.75rem}
+.sec-label{font:500 var(--s-label)/1.2 var(--label);letter-spacing:.16em;text-transform:uppercase;color:var(--mute)}
+.sec-body{min-width:0;display:flex;flex-direction:column;gap:1.15rem}
+.measure{max-width:40rem}
+@media (min-width:58rem){
+  .sec{grid-template-columns:11rem minmax(0,1fr);column-gap:2.5rem;align-items:start}
+  .sec-label{position:sticky;top:calc(env(safe-area-inset-top, 0px) + 1.25rem);padding-top:.55rem}
+}
+
+/* Type roles */
+.k{font:600 var(--s-label)/1.2 var(--label);letter-spacing:.16em;text-transform:uppercase;color:var(--mute)}
+.k-rose{color:var(--rose)}
+h1{font:500 var(--s-h1)/.92 var(--display);letter-spacing:-.015em;text-wrap:balance}
+h1 em{font-style:italic;color:var(--rose-display)}
+h2{font:500 var(--s-h2)/1 var(--display);font-variation-settings:"opsz" 28;letter-spacing:-.01em;text-wrap:balance}
+.eyebrow{display:flex;flex-wrap:wrap;gap:.3rem 1.1rem}
+.eyebrow span{white-space:nowrap}
+h2.salute{font-style:italic}
+.dek{font-size:var(--s-lead);line-height:1.45;color:var(--ink-soft)}
+.urgent strong{color:var(--rose);font-weight:650}
+.note{color:var(--ink-soft)}
+
+.jump{display:flex;flex-wrap:wrap;gap:.6rem 1.25rem}
+.jump a{font:500 var(--s-label)/1.2 var(--label);letter-spacing:.14em;text-transform:uppercase;text-decoration:none;padding-block:.5rem;border-bottom:1px solid var(--rule-strong)}
+
+.dashes{display:flex;flex-direction:column;gap:.7rem}
+.dashes li{position:relative;padding-left:1.5rem}
+.dashes li::before{content:"";position:absolute;left:0;top:.78em;width:.85rem;height:1.5px;background:var(--rose)}
+
+.signoff{display:flex;align-items:center;gap:.9rem;padding-top:.4rem}
+.seal{flex:none;width:3.1rem;height:3.1rem;border-radius:47% 53% 51% 49%/52% 48% 54% 46%;background:var(--rose-fill);color:var(--on-rose);display:grid;place-items:center;font:italic 600 1.55rem/1 var(--display);box-shadow:inset 0 0 0 3px var(--seal-ring)}
+.signoff-name{font:italic 500 1.7rem/1.1 var(--display);font-variation-settings:"opsz" 18}
+.signoff-line{font:500 var(--s-label)/1.3 var(--label);letter-spacing:.14em;text-transform:uppercase;color:var(--mute)}
+
+/* Timeline: every position is minutes after 7:00 on a 210-minute track (7:00 to 10:30) */
+.tl{display:flex;flex-direction:column;gap:.7rem;padding-block:.4rem}
+.tl-chart{position:relative;padding-bottom:1.6rem}
+.tl-grid span{position:absolute;top:0;bottom:1.6rem;left:calc(var(--t) / 210 * 100%);width:1px;background:var(--rule)}
+.tl-rows{position:relative;display:flex;flex-direction:column;gap:.3rem}
+.tl-bar{margin-left:calc(var(--s) / 210 * 100%);width:calc(135 / 210 * 100%);min-height:1.75rem;background:var(--bar);color:var(--ink);display:flex;align-items:center;justify-content:space-between;gap:.5rem;padding-inline:.5rem;font:500 .74rem/1 var(--label);font-variant-numeric:tabular-nums;white-space:nowrap}
+.tl-bar.is-pick{background:var(--rose-fill);color:var(--on-rose)}
+.tl-who{font-weight:400}
+.tl-axis span{position:absolute;bottom:0;left:calc(var(--t) / 210 * 100%);transform:translateX(-50%);font:400 .72rem/1 var(--label);font-variant-numeric:tabular-nums;color:var(--mute)}
+.tl-axis span:first-child{transform:none}
+.tl figcaption{font-size:.95rem;line-height:1.45;color:var(--ink-soft)}
+
+/* The six pulses */
+.pulses{display:flex;flex-direction:column;border-bottom:1px solid var(--rule)}
+.pulse{border-top:1px solid var(--rule)}
+.pulse > summary{list-style:none;cursor:pointer;padding-block:1.15rem 1.25rem}
+.pulse > summary::-webkit-details-marker{display:none}
+.sum{display:grid;grid-template-columns:minmax(0,1fr) auto;grid-template-areas:"time side" "meta meta" "cast cast" "vibe vibe";gap:.45rem .75rem;align-items:start}
+.sum-time{grid-area:time;font:500 var(--s-time)/.88 var(--display);font-variant-numeric:lining-nums tabular-nums;letter-spacing:-.02em}
+.is-pick .sum-time{color:var(--rose-display)}
+.sum-side{grid-area:side;display:flex;flex-direction:column;align-items:flex-end;gap:.6rem}
+.badge{font:600 .66rem/1 var(--label);letter-spacing:.14em;text-transform:uppercase;padding:.42rem .55rem;border:1px solid var(--mute);color:var(--ink-soft);white-space:nowrap}
+.is-pick .badge{background:var(--rose-fill);border-color:var(--rose-fill);color:var(--on-rose)}
+.toggle{position:relative;width:2rem;height:2rem;border:1px solid var(--rule-strong);border-radius:50%;color:var(--ink)}
+.toggle::before,.toggle::after{content:"";position:absolute;left:50%;top:50%;width:.8rem;height:1.5px;background:currentColor;transform:translate(-50%,-50%)}
+.toggle::after{transform:translate(-50%,-50%) rotate(90deg);transition:transform .2s ease}
+.pulse[open] .toggle::after{transform:translate(-50%,-50%) rotate(0deg)}
+.sum-meta{grid-area:meta;font:500 var(--s-label)/1.3 var(--label);letter-spacing:.14em;text-transform:uppercase;color:var(--mute)}
+.cast{grid-area:cast;display:grid;gap:.1rem;padding-top:.15rem}
+.cast-row{display:grid;grid-template-columns:5.3rem minmax(0,1fr);align-items:baseline}
+.cast-role{font:500 .66rem/1.2 var(--label);letter-spacing:.14em;text-transform:uppercase;color:var(--mute)}
+.cast-name{font:600 1.32rem/1.2 var(--display);font-variation-settings:"opsz" 16}
+.sum-vibe{grid-area:vibe;font-style:italic;color:var(--ink-soft)}
+@media (min-width:40rem){
+  .sum{grid-template-columns:10.5rem minmax(0,1fr) auto;grid-template-areas:"time meta side" "time cast side" "time vibe side"}
+  .sum-side{flex-direction:row;align-items:center}
+}
+
+.panel{display:flex;flex-direction:column;gap:1.5rem;padding-bottom:2rem}
+@media (min-width:40rem){.panel{padding-left:11.25rem}}
+.block{display:flex;flex-direction:column;gap:.45rem}
+.read{font-size:1.16rem;line-height:1.5}
+.duo{display:grid;gap:1.5rem}
+@media (min-width:54rem){.duo{grid-template-columns:repeat(2,minmax(0,1fr));column-gap:2.25rem}}
+.who{display:flex;flex-direction:column;gap:.5rem;min-width:0}
+.who h3{font:600 var(--s-name)/1.1 var(--display);font-variation-settings:"opsz" 18}
+.since{font:400 .84rem/1.3 var(--label);color:var(--mute)}
+.who p{font-size:1rem}
+.who .said{padding-top:.35rem}
+.said .k{display:block;margin-bottom:.3rem}
+.facts{display:grid;border-top:1px solid var(--rule)}
+.fact{display:grid;grid-template-columns:6.4rem minmax(0,1fr);gap:.85rem;align-items:baseline;padding-block:.75rem;border-bottom:1px solid var(--rule)}
+.fact dd{font-size:1rem}
+.vote{display:flex;flex-wrap:wrap;align-items:center;gap:.75rem 1rem}
+.status{font:400 .86rem/1.3 var(--label);color:var(--ink-soft)}
+
+.btn{font:600 .76rem/1 var(--label);letter-spacing:.14em;text-transform:uppercase;padding:.9rem 1.15rem;border:1px solid var(--rule-strong);border-radius:0;background:transparent;color:var(--ink);cursor:pointer}
+.btn-fill,.btn[aria-pressed="true"]{background:var(--rose-fill);border-color:var(--rose-fill);color:var(--on-rose)}
+
+.small{display:flex;flex-direction:column;gap:.75rem;font-size:.97rem;color:var(--ink-soft)}
+.small b{font:600 var(--s-label)/1.2 var(--label);letter-spacing:.16em;text-transform:uppercase;color:var(--ink);margin-right:.5rem}
+
+/* House rules */
+.rules{display:grid;border-bottom:1px solid var(--rule)}
+.rule-row{display:grid;grid-template-columns:6.4rem minmax(0,1fr);gap:.85rem;align-items:baseline;padding-block:.85rem;border-top:1px solid var(--rule)}
+
+/* Reply builder: the one boxed element on the page */
+.reply{background:var(--surface);border:1px solid var(--rule);padding:1.25rem;display:flex;flex-direction:column;gap:1rem}
+.field{display:flex;flex-direction:column;gap:.4rem;min-width:0}
+.field input,.field select,.field textarea{font:400 1rem/1.4 var(--text);color:var(--ink);background:var(--ground);border:1px solid var(--rule);border-radius:0;padding:.7rem .75rem;width:100%;max-width:100%}
+.field textarea{resize:vertical;min-height:7rem}
+.reply-actions{display:flex;flex-wrap:wrap;align-items:center;gap:.75rem 1rem}
+
+.foot{display:flex;flex-direction:column;gap:.9rem;font-size:.95rem;color:var(--ink-soft)}
+.sources > summary{cursor:pointer;font:600 var(--s-label)/1.2 var(--label);letter-spacing:.16em;text-transform:uppercase;color:var(--ink);padding-block:.5rem}
+.sources ul{display:flex;flex-direction:column;gap:.45rem;padding-top:.6rem}
+.sources li{overflow-wrap:anywhere}
+</style>
+
+<div class="page">
+
+  <header class="sec">
+    <p class="sec-label">Unofficial pulse guide</p>
+    <div class="sec-body measure">
+      <p class="k eyebrow"><span>Masquerade</span><span>Wednesday 23 December 2026</span><span>218 West 57th Street</span></p>
+      <h1>Pick your <em>Phantom.</em></h1>
+      <p class="dek">Six Phantoms and six Christines perform every night, fifteen minutes apart, and we only get one pair. This is the full read on all six. Open a time to see it.</p>
+      <p class="urgent"><strong>Booking the minute Ryan answers.</strong> Shows are selling out, and these tickets can’t be refunded, exchanged or resold.</p>
+      <nav class="jump" aria-label="On this page">
+        <a href="#ray" data-jump>Ray, start here</a>
+        <a href="#pulses" data-jump>The six pulses</a>
+        <a href="#rules" data-jump>House rules</a>
+        <a href="#ryan" data-jump>Ryan, you’re last</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="sec" id="ray">
+    <p class="sec-label">A note for Ray</p>
+    <div class="sec-body measure">
+      <h2 class="salute">Ray, sit down.</h2>
+      <p>A pulse is your entry time. That’s the whole secret, and you can stop nodding like you already knew.</p>
+      <p>Masquerade is <i>The Phantom of the Opera</i> staged across six floors of an old art-supply store on 57th Street. Nobody gets a seat. About 60 of us in masks are led through the opera house, the dressing rooms and the Phantom’s lair while the cast sings inches from our faces.</p>
+      <p>The building runs that whole show six times a night, fifteen minutes apart, at 7:00, 7:15, 7:30, 7:45, 8:00 and 8:15. Each start time is a pulse. Each pulse gets its own Phantom and its own Christine, and they stay with that one group for the full two hours and change.</p>
+      <p>So the story, the building and the chandelier are the same for everyone, and the leading man depends on when you walk in. Six emotionally unavailable men in masks, and we only get one. Yes, our type finally has a show.</p>
+
+      <figure class="tl">
+        <div class="tl-chart" role="img" aria-label="Six bars, one for each entry time, each about two hours and fifteen minutes long. 7:00 runs to 9:15, 7:15 to 9:30, 7:30 to 9:45, 7:45 to 10:00, 8:00 to 10:15 and 8:15 to 10:30.">
+          <div class="tl-grid" aria-hidden="true"><span style="--t:0"></span><span style="--t:60"></span><span style="--t:120"></span><span style="--t:180"></span></div>
+          <div class="tl-rows" aria-hidden="true">
+            <div class="tl-bar" style="--s:0"><span>7:00 – 9:15</span><span class="tl-who">Scatliffe</span></div>
+            <div class="tl-bar" style="--s:15"><span>7:15 – 9:30</span><span class="tl-who">Edwards</span></div>
+            <div class="tl-bar" style="--s:30"><span>7:30 – 9:45</span><span class="tl-who">Kolluri</span></div>
+            <div class="tl-bar is-pick" style="--s:45"><span>7:45 – 10:00</span><span class="tl-who">Davis</span></div>
+            <div class="tl-bar" style="--s:60"><span>8:00 – 10:15</span><span class="tl-who">Cartell</span></div>
+            <div class="tl-bar" style="--s:75"><span>8:15 – 10:30</span><span class="tl-who">Vona</span></div>
+          </div>
+          <div class="tl-axis" aria-hidden="true"><span style="--t:0">7:00</span><span style="--t:60">8:00</span><span style="--t:120">9:00</span><span style="--t:180">10:00</span></div>
+        </div>
+        <figcaption>One night at 218 West 57th. Six groups move through the building in a line, about 2 hours 15 minutes each with no intermission, and you never see the other groups. The name on each bar is that pulse’s Phantom.</figcaption>
+      </figure>
+
+      <p class="k">Before you ask</p>
+      <ul class="dashes">
+        <li>Your ticket is for one entry time. If you book 7:15 and I book 7:45, we see two different casts and wave at each other in the bar afterward.</li>
+        <li>You get a glass of bubbles at the door and a dance lesson soon after. You will do the dance.</li>
+        <li>You may not come dressed as the Phantom. Phantom masks are banned, and the building already has six of him.</li>
+      </ul>
+
+      <div class="signoff">
+        <span class="seal" aria-hidden="true">J</span>
+        <span><span class="signoff-name">Josh</span></span>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="pulses">
+    <p class="sec-label">The six pulses</p>
+    <div class="sec-body">
+      <h2>Who you get, by entry time</h2>
+      <p class="note measure">Lineup as of Friday, October 9, 2026. Casting moves and understudies go on, so read this as the likely December 23 cast. Nothing here is promised.</p>
+
+      <div class="pulses">
+
+        <details class="pulse" id="p700">
+          <summary>
+            <span class="sum">
+              <span class="sum-time">7:00</span>
+              <span class="sum-side"><span class="badge">Runner-up</span><span class="toggle" aria-hidden="true"></span></span>
+              <span class="sum-meta">Pulse 1 of 6 · out about 9:15</span>
+              <span class="cast">
+                <span class="cast-row"><span class="cast-role">Phantom</span><span class="cast-name">Kyle Scatliffe</span></span>
+                <span class="cast-row"><span class="cast-role">Christine</span><span class="cast-name">Claire Leyden</span></span>
+              </span>
+              <span class="sum-vibe">The original Phantom and the crossover soprano.</span>
+            </span>
+          </summary>
+          <div class="panel">
+            <div class="block">
+              <p class="k">The vibe</p>
+              <p class="read">The safest pair of hands in the building. Scatliffe has played the 7:00 Phantom since the show opened and is the only one of the original six still in the mask. He is also the Phantom I found the most outside praise for. You’re out by about 9:15 with the whole night ahead of you.</p>
+            </div>
+            <div class="duo">
+              <div class="who">
+                <p class="k k-rose">The Phantom</p>
+                <h3>Kyle Scatliffe</h3>
+                <p class="since">At 7:00 since the show opened in 2025</p>
+                <p>Broadway: Enjolras in the 2014 <i>Les Misérables</i> revival, Harpo in <i>The Color Purple</i>, Lafayette and Jefferson in <i>Hamilton</i>, and Tom Robinson in <i>To Kill a Mockingbird</i>. Olivier Award nominee for <i>The Scottsboro Boys</i> in London.</p>
+                <p class="said"><span class="k">What people say</span>The Amsterdam News critic caught him at a Sunday matinee and called his Phantom extraordinary. On the BroadwayWorld boards, a regular who had also seen Broadway veteran Hugh Panaro named Scatliffe the favorite and said he was captivating and worth the ticket price.</p>
+              </div>
+              <div class="who">
+                <p class="k k-rose">The Christine</p>
+                <h3>Claire Leyden</h3>
+                <p class="since">At 7:00 since August 18, 2026</p>
+                <p>With the show from the start as a swing and its vocal captain. She first went on as Christine in August 2025 and was promoted to a Christine slot of her own this June. Her background runs from musical theater into concert work and contemporary opera.</p>
+                <p class="said"><span class="k">What people say</span>No critic has reviewed her Christine yet that I could find. Press quoted in her own bio praises a crystal-clear soprano and strong stage presence.</p>
+              </div>
+            </div>
+            <dl class="facts">
+              <div class="fact"><dt class="k">Also cast</dt><dd>Meg is usually Haile Ferrier, the 7:15 Christine. Raoul is shared with 7:45.</dd></div>
+              <div class="fact"><dt class="k">Pick it if</dt><dd>You want the most road-tested Phantom, or you want dinner after.</dd></div>
+              <div class="fact"><dt class="k">Skip it if</dt><dd>You can’t be on 57th Street by 7:00 sharp. Latecomers are not let in.</dd></div>
+            </dl>
+            <div class="vote"><button class="btn" type="button" id="vote-700" data-vote="7:00" aria-pressed="false">Vote for 7:00</button><span class="status" role="status" id="st-700"></span></div>
+          </div>
+        </details>
+
+        <details class="pulse" id="p715">
+          <summary>
+            <span class="sum">
+              <span class="sum-time">7:15</span>
+              <span class="sum-side"><span class="badge">Most modern</span><span class="toggle" aria-hidden="true"></span></span>
+              <span class="sum-meta">Pulse 2 of 6 · out about 9:30</span>
+              <span class="cast">
+                <span class="cast-row"><span class="cast-role">Phantom</span><span class="cast-name">Nicholas Edwards</span></span>
+                <span class="cast-row"><span class="cast-role">Christine</span><span class="cast-name">Haile Ferrier</span></span>
+              </span>
+              <span class="sum-vibe">The Raoul who got the mask and a Christine with a contemporary mix.</span>
+            </span>
+          </summary>
+          <div class="panel">
+            <div class="block">
+              <p class="k">The vibe</p>
+              <p class="read">On paper, the most contemporary-sounding pulse. Edwards spent most of the show’s first year as Raoul, the rich nice-guy boyfriend, and was promoted to the Phantom at the end of June. Ferrier came up through <i>Dear Evan Hansen</i> and mixes that sound into the soprano writing. If old-school operatic Phantoms feel stiff to you, start here.</p>
+            </div>
+            <div class="duo">
+              <div class="who">
+                <p class="k k-rose">The Phantom</p>
+                <h3>Nicholas Edwards</h3>
+                <p class="since">Phantom at 7:15 since June 30, 2026</p>
+                <p>Masquerade’s original Raoul, and a Phantom understudy before the promotion. Broadway: the original cast of <i>&amp; Juliet</i> as Lord Capulet, and <i>Frozen</i>, where he understudied Kristoff before playing him on tour. He also toured in <i>Les Misérables</i>, covering Enjolras.</p>
+                <p class="said"><span class="k">What people say</span>Too new in the mask for reviews. I found none. He does know this staging better than almost anyone, having spent a year watching the Phantom from the other side of the love triangle.</p>
+              </div>
+              <div class="who">
+                <p class="k k-rose">The Christine</p>
+                <h3>Haile Ferrier</h3>
+                <p class="since">At 7:15 since the show opened in 2025</p>
+                <p>Went straight from college into the first national tour of <i>Dear Evan Hansen</i>, covering Zoe and Alana. Since then: Sarah in <i>Guys and Dolls</i> at Maltz Jupiter Theatre and <i>Sunset Boulevard</i> at the Kennedy Center.</p>
+                <p class="said"><span class="k">What people say</span>New York Theatre Guide’s critic saw her at opening and described her Christine as airy and wide-eyed. On a vocal-coaching podcast she explained that she blends a musical-theater mix with legit soprano, starting bright in “Think of Me” and darkening by “The Point of No Return.”</p>
+              </div>
+            </div>
+            <dl class="facts">
+              <div class="fact"><dt class="k">Also cast</dt><dd>Meg is usually Francesca Mehrotra, the 7:30 Christine. Raoul is shared with 8:00.</dd></div>
+              <div class="fact"><dt class="k">Pick it if</dt><dd>You’d rather hear a musical-theater Christine than an operatic one.</dd></div>
+              <div class="fact"><dt class="k">Skip it if</dt><dd>You want a Phantom with years in the part. He has had it since June.</dd></div>
+            </dl>
+            <div class="vote"><button class="btn" type="button" id="vote-715" data-vote="7:15" aria-pressed="false">Vote for 7:15</button><span class="status" role="status" id="st-715"></span></div>
+          </div>
+        </details>
+
+        <details class="pulse" id="p730">
+          <summary>
+            <span class="sum">
+              <span class="sum-time">7:30</span>
+              <span class="sum-side"><span class="badge">Wild card</span><span class="toggle" aria-hidden="true"></span></span>
+              <span class="sum-meta">Pulse 3 of 6 · out about 9:45</span>
+              <span class="cast">
+                <span class="cast-row"><span class="cast-role">Phantom</span><span class="cast-name">Deven Kolluri</span></span>
+                <span class="cast-row"><span class="cast-role">Christine</span><span class="cast-name">Francesca Mehrotra</span></span>
+              </span>
+              <span class="sum-vibe">The newest Phantom and the opera-trained Christine.</span>
+            </span>
+          </summary>
+          <div class="panel">
+            <div class="block">
+              <p class="k">The vibe</p>
+              <p class="read">The least predictable pulse, with possibly the best-sung Christine. Mehrotra is the classically trained one, and critics noticed. Kolluri is the newest of the six Phantoms. He arrived as a vacation cover in August and, going by this week’s listings, has just taken over this slot from Quentin Earl Darrington. High ceiling, least evidence.</p>
+            </div>
+            <div class="duo">
+              <div class="who">
+                <p class="k k-rose">The Phantom</p>
+                <h3>Deven Kolluri</h3>
+                <p class="since">First went on as the Phantom on August 8, 2026</p>
+                <p>He covered 8:15 for a week in August and this pulse for two weeks into September. BroadwayWorld’s October 9 photo of the six current Phantoms includes him. New Yorkers may know him as Hemant, the groom, in Mira Nair’s <i>Monsoon Wedding</i> musical at St. Ann’s Warehouse in 2023.</p>
+                <p class="said"><span class="k">What people say</span>No reviews yet. A fan wiki records that on August 30 this pulse put up the show’s first all-Desi Phantom, Christine and Raoul.</p>
+              </div>
+              <div class="who">
+                <p class="k k-rose">The Christine</p>
+                <h3>Francesca Mehrotra</h3>
+                <p class="since">A Christine since the show opened in 2025</p>
+                <p>Opera and operetta on the résumé: Mabel in <i>The Pirates of Penzance</i> at Opera Colorado and Johanna in <i>Sweeney Todd</i> with Pacific Symphony, plus <i>Titanic</i> at Marriott Theatre and <i>A Little Night Music</i> at Ogunquit Playhouse.</p>
+                <p class="said"><span class="k">What people say</span>New York Stage Review covered her pulse at opening, opposite Hugh Panaro, and singled out how beautifully she sang the role. She has said some scenes are sung without amplification, and she credits her classical training for carrying them.</p>
+              </div>
+            </div>
+            <dl class="facts">
+              <div class="fact"><dt class="k">Also cast</dt><dd>Meg is usually Kaley Ann Voorhees, the Broadway Christine from 7:45, in the smaller part. Raoul is Dan Hoy.</dd></div>
+              <div class="fact"><dt class="k">Pick it if</dt><dd>The soprano matters most to you, or you like seeing someone before everyone else catches on.</dd></div>
+              <div class="fact"><dt class="k">Skip it if</dt><dd>You want certainty about who is in the mask. This slot has changed Phantoms more than any other this year.</dd></div>
+            </dl>
+            <div class="vote"><button class="btn" type="button" id="vote-730" data-vote="7:30" aria-pressed="false">Vote for 7:30</button><span class="status" role="status" id="st-730"></span></div>
+          </div>
+        </details>
+
+        <details class="pulse is-pick" id="p745" open>
+          <summary>
+            <span class="sum">
+              <span class="sum-time">7:45</span>
+              <span class="sum-side"><span class="badge">Top pick</span><span class="toggle" aria-hidden="true"></span></span>
+              <span class="sum-meta">Pulse 4 of 6 · out about 10:00</span>
+              <span class="cast">
+                <span class="cast-row"><span class="cast-role">Phantom</span><span class="cast-name">Derrick Davis</span></span>
+                <span class="cast-row"><span class="cast-role">Christine</span><span class="cast-name">Kaley Ann Voorhees</span></span>
+              </span>
+              <span class="sum-vibe">The tour Phantom and the Broadway Christine.</span>
+            </span>
+          </summary>
+          <div class="panel">
+            <div class="block">
+              <p class="k">The vibe</p>
+              <p class="read">The only pulse where both leads have already spent years in these exact roles. Davis led the national tour as the Phantom. Voorhees was Christine at the Majestic on Broadway. This is the big, classic, full-voiced version, sung an arm’s length away by two people who know every bar of it. For a first visit, it’s the one.</p>
+            </div>
+            <div class="duo">
+              <div class="who">
+                <p class="k k-rose">The Phantom</p>
+                <h3>Derrick Davis</h3>
+                <p class="since">At 7:45 since May 11, 2026</p>
+                <p>He first put on the mask in October 2016 at Bass Performance Hall in Fort Worth, taking over the title role on the national tour, and came back in 2019 for the tour’s final stretch. Before that he logged more than 1,000 Broadway performances in <i>The Lion King</i>, where he was the first actor to cover both Mufasa and Scar. <i>Phantom</i> was the first show he ever saw.</p>
+                <p class="said"><span class="k">What people say</span>Tour critics were loud about him. The Las Vegas Review-Journal’s reviewer, a repeat <i>Phantom</i>-goer, wrote that Davis was the first to make him feel the character’s heartbreak and side with the Phantom over Raoul. A Los Angeles critic said he beat high expectations. Those are reviews of the tour. Nothing has been published on his Masquerade Phantom yet.</p>
+              </div>
+              <div class="who">
+                <p class="k k-rose">The Christine</p>
+                <h3>Kaley Ann Voorhees</h3>
+                <p class="since">At 7:45 since the show opened in 2025</p>
+                <p>Made her Broadway debut as Christine in 2014 at age 20, the youngest ever in the New York production, and took over the role full-time in 2018. Also <i>Prince of Broadway</i>, <i>Candide</i> with New York City Opera, and Christine again on the international tour.</p>
+                <p class="said"><span class="k">What people say</span>The Daily Beast’s Tim Teeman saw this pulse at opening and wrote that the score was beautifully sung. BroadwayBox once asked her which <i>Drag Race</i> queens she would cast as Christine and Carlotta, so she has fielded our kind of question before.</p>
+              </div>
+            </div>
+            <dl class="facts">
+              <div class="fact"><dt class="k">Also cast</dt><dd>Meg is usually Riley Noland, the 8:00 Christine. Raoul is shared with 7:00.</dd></div>
+              <div class="fact"><dt class="k">Pick it if</dt><dd>It’s your first time, or the singing matters most to you.</dd></div>
+              <div class="fact"><dt class="k">Skip it if</dt><dd>You’ve seen the classic version plenty and want something stranger. Try 8:15.</dd></div>
+            </dl>
+            <div class="vote"><button class="btn" type="button" id="vote-745" data-vote="7:45" aria-pressed="false">Vote for 7:45</button><span class="status" role="status" id="st-745"></span></div>
+          </div>
+        </details>
+
+        <details class="pulse" id="p800">
+          <summary>
+            <span class="sum">
+              <span class="sum-time">8:00</span>
+              <span class="sum-side"><span class="badge">The Valjean</span><span class="toggle" aria-hidden="true"></span></span>
+              <span class="sum-meta">Pulse 5 of 6 · out about 10:15</span>
+              <span class="cast">
+                <span class="cast-row"><span class="cast-role">Phantom</span><span class="cast-name">Nick Cartell</span></span>
+                <span class="cast-row"><span class="cast-role">Christine</span><span class="cast-name">Riley Noland</span></span>
+              </span>
+              <span class="sum-vibe">A Valjean-sized tenor and the Christine from opening night.</span>
+            </span>
+          </summary>
+          <div class="panel">
+            <div class="block">
+              <p class="k">The vibe</p>
+              <p class="read">If you want a voice built for huge touring houses aimed at you from a few feet away, this is the pulse. Cartell sang Jean Valjean on the <i>Les Misérables</i> tour more than 1,200 times. Noland has been the 8:00 Christine since the show opened and drew one of the warmest individual notices I found.</p>
+            </div>
+            <div class="duo">
+              <div class="who">
+                <p class="k k-rose">The Phantom</p>
+                <h3>Nick Cartell</h3>
+                <p class="since">At 8:00 since July 21, 2026</p>
+                <p>Jean Valjean on the <i>Les Misérables</i> North American tour from 2017 into 2025. Broadway: <i>Jesus Christ Superstar</i>, <i>Scandalous</i> and Cirque du Soleil’s <i>Paramour</i>. He also knows this material from the inside. Around 2014 he toured in <i>Phantom</i> itself, in the ensemble and covering Raoul.</p>
+                <p class="said"><span class="k">What people say</span>His Valjean drew strong notices on the road, including a Wisconsin critic who called the performance magnetic. Nothing has been published on his Phantom yet.</p>
+              </div>
+              <div class="who">
+                <p class="k k-rose">The Christine</p>
+                <h3>Riley Noland</h3>
+                <p class="since">At 8:00 since the show opened in 2025</p>
+                <p>Masquerade is the one major stage credit I could find for her, so this is the role she has made her name on. P!nk and Matt Damon both met this pulse’s cast when they came through.</p>
+                <p class="said"><span class="k">What people say</span>Off Off Online’s critic reviewed this pulse in May and praised a crystal-clear soprano and the way she lets Christine’s desire show under the innocence.</p>
+              </div>
+            </div>
+            <dl class="facts">
+              <div class="fact"><dt class="k">Also cast</dt><dd>Meg is usually Addie Morales, the 8:15 Christine, who played Cosette to Cartell’s Valjean on the 2022 <i>Les Mis</i> tour. Raoul is shared with 7:15.</dd></div>
+              <div class="fact"><dt class="k">Pick it if</dt><dd>You love a big, ringing Broadway tenor.</dd></div>
+              <div class="fact"><dt class="k">Skip it if</dt><dd>An 8:00 start plus two hours on your feet sounds like a lot. You’re out around 10:15.</dd></div>
+            </dl>
+            <div class="vote"><button class="btn" type="button" id="vote-800" data-vote="8:00" aria-pressed="false">Vote for 8:00</button><span class="status" role="status" id="st-800"></span></div>
+          </div>
+        </details>
+
+        <details class="pulse" id="p815">
+          <summary>
+            <span class="sum">
+              <span class="sum-time">8:15</span>
+              <span class="sum-side"><span class="badge">Last call</span><span class="toggle" aria-hidden="true"></span></span>
+              <span class="sum-meta">Pulse 6 of 6 · out about 10:30</span>
+              <span class="cast">
+                <span class="cast-row"><span class="cast-role">Phantom</span><span class="cast-name">Ryan Vona</span></span>
+                <span class="cast-row"><span class="cast-role">Christine</span><span class="cast-name">Addie Morales</span></span>
+              </span>
+              <span class="sum-vibe">The young, volatile Phantom and the latest night out.</span>
+            </span>
+          </summary>
+          <div class="panel">
+            <div class="block">
+              <p class="k">The vibe</p>
+              <p class="read">The edgiest take and the last group in. Vona plays the Phantom younger and more volatile than the others, and the people who like that really like it. You finish around 10:30, and fan guides say the final pulse has the best odds of cast members turning up at the bar afterward. Different Ryan, for the record. This one appears on schedule.</p>
+            </div>
+            <div class="duo">
+              <div class="who">
+                <p class="k k-rose">The Phantom</p>
+                <h3>Ryan Vona</h3>
+                <p class="since">In the show since January 2026</p>
+                <p>Broadway: <i>Once</i>, where he played Andrej and several instruments, a lead role in Cirque du Soleil’s <i>Paramour</i>, <i>Beautiful</i>, and standby for Leo Frank in the 2023 <i>Parade</i> revival.</p>
+                <p class="said"><span class="k">What people say</span>A BroadwayWorld regular who saw him in February loved the youth of it. Their take was that the wounds feel fresh, he moves fast, and he seems like he could appear anywhere, which made him feel dangerous. The pushback in the same thread was that some of the younger Phantoms sound light for the part. Nobody named him, but that is the usual complaint about this style.</p>
+              </div>
+              <div class="who">
+                <p class="k k-rose">The Christine</p>
+                <h3>Addie Morales</h3>
+                <p class="since">Back at 8:15 since August 18, 2026</p>
+                <p>Her second stint in the show, after January to May. Cosette on the <i>Les Misérables</i> national tour, and regionally Maria in <i>West Side Story</i>, Maria in <i>The Sound of Music</i> and Eva in <i>Evita</i>.</p>
+                <p class="said"><span class="k">What people say</span>No individual reviews that I could find. She is on vacation this month with Georgia Mendes covering, and the fan wiki has her back after October 25.</p>
+              </div>
+            </div>
+            <dl class="facts">
+              <div class="fact"><dt class="k">Also cast</dt><dd>Meg is usually Georgia Mendes, the show’s regular Meg. Raoul is Dan Hoy.</dd></div>
+              <div class="fact"><dt class="k">Pick it if</dt><dd>You want the Phantom to scare you a little, or you want the bar after.</dd></div>
+              <div class="fact"><dt class="k">Skip it if</dt><dd>You want the lushest, most traditional vocal. That’s 7:45.</dd></div>
+            </dl>
+            <div class="vote"><button class="btn" type="button" id="vote-815" data-vote="8:15" aria-pressed="false">Vote for 8:15</button><span class="status" role="status" id="st-815"></span></div>
+          </div>
+        </details>
+
+      </div>
+
+      <ul class="small measure">
+        <li><b>Raoul</b>Three actors each cover two pulses: 7:00 with 7:45, 7:15 with 8:00, and 7:30 with 8:15. Dan Hoy has had 7:30 and 8:15 since February. The other two, Travis Keith Battle and Joe Caskey, both joined in September, and I couldn’t confirm which pair each one plays.</li>
+        <li><b>Meg</b>The Meg in each pulse is usually the Christine from the pulse right after it, so you hear a second Christine in a smaller part.</li>
+        <li><b>Reviews</b>Critics mostly saw this show in fall 2025, and four of the six Phantoms have joined since May. Where a panel leans on someone’s earlier work, it says so.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="sec" id="rules">
+    <p class="sec-label">Before you get dressed</p>
+    <div class="sec-body measure">
+      <h2>House rules</h2>
+      <dl class="rules">
+        <div class="rule-row"><dt class="k">Dress</dt><dd>Black, white or silver. The show says formal is encouraged. In this group it’s mandatory. Turn up off-code and they lend you a cloak, and everyone will know why you’re wearing it.</dd></div>
+        <div class="rule-row"><dt class="k">Mask</dt><dd>Required, in the same three colors. Bring your own or they hand you one at the door. No full-face masks, no LEDs and no Phantom masks.</dd></div>
+        <div class="rule-row"><dt class="k">Shoes</dt><dd>No stilettos. There are escalators, up to thirty steps between floors and about two hours on your feet. If stairs are a problem, there is an elevator route, but it has to be arranged with the show in advance.</dd></div>
+        <div class="rule-row"><dt class="k">Getting in</dt><dd>A password arrives by email 24 hours before. Everyone in the party needs it, plus photo ID.</dd></div>
+        <div class="rule-row"><dt class="k">Timing</dt><dd>Doors open at your entry time and latecomers are not admitted. Be on 57th Street fifteen minutes early.</dd></div>
+        <div class="rule-row"><dt class="k">Bags, phones</dt><dd>Coats and bags are checked for free. No photos or recording during the show. Save it for the Lake Bar at the end, where photos are allowed.</dd></div>
+        <div class="rule-row"><dt class="k">Food, drink</dt><dd>Bubbles on arrival, water along the way and a full bar at the end. No intermission, so eat first. The show’s own suggestions within a block are Trattoria Dell’Arte, Paris Bar and Brooklyn Diner.</dd></div>
+        <div class="rule-row"><dt class="k">December</dt><dd>Some scenes play on the roof when the weather allows. In the cold they move indoors, so we may not get the skyline.</dd></div>
+        <div class="rule-row"><dt class="k">Effects</dt><dd>Haze and strobe lights throughout.</dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <section class="sec" id="ryan">
+    <p class="sec-label">A note for Ryan</p>
+    <div class="sec-body measure">
+      <h2 class="salute">Ryan.</h2>
+      <p>I hope you’re well. I’m assuming you’re well, because the other explanation is that you’ve been pinned under a chandelier since I asked which shows you want to see.</p>
+      <p>Ray had never heard the word pulse before today and has now read a full briefing on it. You are our man in New York and you have sent nothing. You’re giving Phantom of the group chat. We know you’re in there, we can feel you watching, and you won’t show your face.</p>
+      <p>The silence has a cost. Shows are selling out. Masquerade sells by entry time, so everyone going has to be on the same pulse in one order, and the tickets can’t be refunded, exchanged or resold. I can’t book any of it until you answer.</p>
+      <p>I need two answers today.</p>
+      <ul class="dashes">
+        <li>Which shows you want to see on this trip.</li>
+        <li>Which pulse you’re voting for. No vote means you get 7:45 and you say thank you.</li>
+      </ul>
+      <p>I wrote your reply for you. It has two blanks. I believe in you.</p>
+
+      <div class="reply">
+        <p class="k k-rose">Ryan’s reply, pre-written</p>
+        <div class="field">
+          <label class="k" for="shows">Shows I want to see</label>
+          <input id="shows" type="text" autocomplete="off" placeholder="Name them. All of them.">
+        </div>
+        <div class="field">
+          <label class="k" for="vote">Pulse vote</label>
+          <select id="vote">
+            <option value="">No vote yet</option>
+            <option value="7:00">7:00 · Scatliffe and Leyden</option>
+            <option value="7:15">7:15 · Edwards and Ferrier</option>
+            <option value="7:30">7:30 · Kolluri and Mehrotra</option>
+            <option value="7:45">7:45 · Davis and Voorhees</option>
+            <option value="8:00">8:00 · Cartell and Noland</option>
+            <option value="8:15">8:15 · Vona and Morales</option>
+          </select>
+        </div>
+        <div class="field">
+          <label class="k" for="reply-text">The reply</label>
+          <textarea id="reply-text" readonly rows="4">Josh, I'm alive and I'm sorry. Shows I want to see: ____. My Masquerade vote: ____.</textarea>
+        </div>
+        <div class="reply-actions">
+          <button class="btn btn-fill" type="button" id="copy-reply">Copy reply</button>
+          <span class="status" role="status" id="copy-status"></span>
+        </div>
+      </div>
+
+      <p class="k">How the booking works</p>
+      <ul class="dashes">
+        <li>One order, one entry time, everyone together.</li>
+        <li>Official tickets are at <a href="https://masqueradenyc.com/buy-tickets/" target="_blank" rel="noopener">masqueradenyc.com</a>. The show says it turns away tickets bought through unauthorized resale.</li>
+        <li>All sales are final. No refunds and no exchanges.</li>
+        <li>Broadway.com lists December 23 from about $271 a ticket with its fees, as of October 9.</li>
+      </ul>
+
+      <div class="signoff">
+        <span class="seal" aria-hidden="true">J</span>
+        <span><span class="signoff-line">With love and a deadline</span><br><span class="signoff-name">Josh</span></span>
+      </div>
+    </div>
+  </section>
+
+  <footer class="sec">
+    <p class="sec-label">Fine print</p>
+    <div class="sec-body measure foot">
+      <p>Unofficial guide made for the group chat. Not affiliated with Masquerade. Lineup and prices checked Friday, October 9, 2026.</p>
+      <p>This page is in dress code: black, white, silver and one spot of red.</p>
+      <details class="sources">
+        <summary>Sources</summary>
+        <ul>
+          <li><a href="https://masqueradenyc.com/instructions/" target="_blank" rel="noopener">Masquerade: instructions and FAQ</a></li>
+          <li><a href="https://www.broadwayworld.com/article/Photo-MASQUERADE-Unveils-Special-Photo-of-All-Six-Phantoms-in-Celebration-of-PHANTOM-Anniversary-20261009" target="_blank" rel="noopener">BroadwayWorld: photo of all six Phantoms, Oct 9, 2026</a></li>
+          <li><a href="https://playbill.com/article/immersive-phantom-revival-masquerade-adds-new-phantoms-raouls-more" target="_blank" rel="noopener">Playbill: Masquerade adds new Phantoms and Raouls, Sept 3, 2026</a></li>
+          <li><a href="https://playbill.com/article/masquerade-will-get-some-new-phantoms" target="_blank" rel="noopener">Playbill: Masquerade will get some new Phantoms, June 16, 2026</a></li>
+          <li><a href="https://the-wiki-of-the-opera.fandom.com/wiki/The_Phantom_of_the_Opera_(Andrew_Lloyd_Webber)_-_Masquerade_(Off-Broadway)(Immersive)" target="_blank" rel="noopener">Wiki of the Opera: Masquerade pulse and cast history</a></li>
+          <li><a href="https://docs.google.com/document/d/1WDWWUl9Gil7Dr6-KnUD08VCn8tJXkp5O/export?format=pdf" target="_blank" rel="noopener">Complete Unofficial Guide to Masquerade NYC</a></li>
+          <li><a href="https://www.recast.show/shows/masquerade-off-broadway/2026-10-08-2015" target="_blank" rel="noopener">Recast: who went on, Oct 8, 2026, 8:15 PM</a></li>
+          <li><a href="https://www.newyorktheatreguide.com/theatre-news/news/10-things-you-need-to-know-about-masquerade-the-immersive-phantom-of-the-opera" target="_blank" rel="noopener">New York Theatre Guide: 10 things to know about Masquerade</a></li>
+          <li><a href="https://www.newyorktheatreguide.com/reviews/masquerade-review-immersive-phantom-of-the-opera" target="_blank" rel="noopener">New York Theatre Guide: review</a></li>
+          <li><a href="https://nystagereview.com/2025/09/29/masquerade-phantom-of-the-opera-immersive-style/" target="_blank" rel="noopener">New York Stage Review: review</a></li>
+          <li><a href="https://theatregold.com/masquerade-inside-the-immersive-phantom-of-the-opera/" target="_blank" rel="noopener">Theatre Gold: inside Masquerade</a></li>
+          <li><a href="https://www.offoffonline.com/offoffonline/2026/5/3/masquerade" target="_blank" rel="noopener">Off Off Online: review, May 11, 2026</a></li>
+          <li><a href="https://amsterdamnews.com/news/2026/03/12/masquerade-is-the-ulitmate-immersive-theatrical-expereince/" target="_blank" rel="noopener">Amsterdam News: review, March 12, 2026</a></li>
+          <li><a href="https://www.timteeman.com/?p=9371" target="_blank" rel="noopener">Tim Teeman for The Daily Beast: review</a></li>
+          <li><a href="https://www.slantmagazine.com/theater/masquerade-review-the-phantom-of-the-opera/" target="_blank" rel="noopener">Slant: review</a></li>
+          <li><a href="https://forum.broadwayworld.com/thread/Masquerade-inquiry-for-those-who-ve-gone" target="_blank" rel="noopener">BroadwayWorld forum: Masquerade thread</a></li>
+          <li><a href="https://www.bwayvocalcoach.com/blog/behind-the-mask-masquerade-christines-vocal-stamina-sisterhood" target="_blank" rel="noopener">Broadway Vocal Coach: Masquerade’s Christines</a></li>
+          <li><a href="https://en.wikipedia.org/wiki/Kyle_Scatliffe" target="_blank" rel="noopener">Wikipedia: Kyle Scatliffe</a></li>
+          <li><a href="https://www.claireleyden.com/bio" target="_blank" rel="noopener">Claire Leyden: bio</a></li>
+          <li><a href="https://www.ibdb.com/broadway-cast-staff/nicholas-edwards-515576" target="_blank" rel="noopener">IBDB: Nicholas Edwards</a></li>
+          <li><a href="https://playbill.com/article/heres-the-international-cast-for-the-immersive-musical-monsoon-wedding-at-st-anns-warehouse" target="_blank" rel="noopener">Playbill: Monsoon Wedding cast</a></li>
+          <li><a href="https://www.theatermania.com/news/derrick-davis-returns-to-phantom-of-the-opera-tour-in-title-role_88373/" target="_blank" rel="noopener">TheaterMania: Derrick Davis returns to the Phantom tour</a></li>
+          <li><a href="https://www.broadway.com/buzz/186184/broadway-fave-derrick-davis-more-join-the-touring-cast-of-the-phantom-of-the-opera" target="_blank" rel="noopener">Broadway.com: Derrick Davis joins the Phantom tour</a></li>
+          <li><a href="https://headlines.liu.edu/?p=646" target="_blank" rel="noopener">LIU: Derrick Davis in the Phantom tour</a></li>
+          <li><a href="https://develop.reviewjournal.com/?p=1094080" target="_blank" rel="noopener">Las Vegas Review-Journal: Phantom tour review, 2017</a></li>
+          <li><a href="https://www.broadwayworld.com/costa-mesa/article/Review-Roundup-The-National-Tour-of-PHANTOM-OF-THE-OPERA-20200205" target="_blank" rel="noopener">BroadwayWorld: Phantom tour review roundup</a></li>
+          <li><a href="https://www.broadway.com/buzz/193678/kaley-ann-voorhees-to-take-over-as-christine-full-time-in-the-phantom-of-the-opera/" target="_blank" rel="noopener">Broadway.com: Kaley Ann Voorhees takes over as Christine</a></li>
+          <li><a href="https://www.broadwaybox.com/daily-scoop/five-burning-questions-with-phantom-star-kaley-ann-voorhees/" target="_blank" rel="noopener">BroadwayBox: five questions with Kaley Ann Voorhees</a></li>
+          <li><a href="https://broadway.com/buzz/204669/les-miserables-completes-casting-for-north-american-tours-third-year" target="_blank" rel="noopener">Broadway.com: Les Misérables tour casting</a></li>
+          <li><a href="https://www.broadwayinchicago.com/guest-blog-nick-cartell-from-the-spectacular-new-the-phantom-of-the-opera/" target="_blank" rel="noopener">Broadway In Chicago: Nick Cartell on the Phantom tour</a></li>
+          <li><a href="https://www.daytondailynews.com/lifestyles/les-miserables-returns-to-dayton/GKNDOUVTBZBQPKO3ZXTMXJHRRY/" target="_blank" rel="noopener">Dayton Daily News: Les Misérables returns to Dayton</a></li>
+          <li><a href="https://www.theatermania.com/news/les-miserables-tour-relaunching-in-cleveland-at-playhouse-square-announces-cast_94192/" target="_blank" rel="noopener">TheaterMania: 2022 Les Misérables tour cast</a></li>
+          <li><a href="https://www.andrewlloydwebber.com/news/matt-damon-drops-by-andrew-lloyd-webbers-masquerade-in-new-york" target="_blank" rel="noopener">Andrew Lloyd Webber: Matt Damon visits Masquerade</a></li>
+          <li><a href="https://www.broadwayworld.com/people/Riley-Noland/" target="_blank" rel="noopener">BroadwayWorld: Riley Noland</a></li>
+          <li><a href="https://www.ibdb.com/broadway-cast-staff/ryan-vona-496812" target="_blank" rel="noopener">IBDB: Ryan Vona</a></li>
+          <li><a href="https://www.playhousesquare.org/assets/doc/LES-MISRABLES-Cast-Bios-0f29f90787.pdf" target="_blank" rel="noopener">Playhouse Square: Les Misérables cast bios</a></li>
+          <li><a href="https://www.broadway.com/shows/masquerade/event/21762134/12-23-2026/1915/" target="_blank" rel="noopener">Broadway.com: Masquerade, Wed Dec 23, 2026</a></li>
+        </ul>
+      </details>
+    </div>
+  </footer>
+
+</div>
+
+<script>
+(function () {
+  var CAST = {
+    "7:00": "Kyle Scatliffe + Claire Leyden",
+    "7:15": "Nicholas Edwards + Haile Ferrier",
+    "7:30": "Deven Kolluri + Francesca Mehrotra",
+    "7:45": "Derrick Davis + Kaley Ann Voorhees",
+    "8:00": "Nick Cartell + Riley Noland",
+    "8:15": "Ryan Vona + Addie Morales"
+  };
+  var shows = document.getElementById("shows");
+  var vote = document.getElementById("vote");
+  var reply = document.getElementById("reply-text");
+  var copyBtn = document.getElementById("copy-reply");
+  var copyStatus = document.getElementById("copy-status");
+  var voteButtons = Array.prototype.slice.call(document.querySelectorAll("[data-vote]"));
+  var calm = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  function voteLine(v) { return "the " + v + " pulse (" + CAST[v] + ")"; }
+
+  function build() {
+    var s = shows.value.trim() || "____";
+    var v = vote.value && CAST[vote.value] ? voteLine(vote.value) : "____";
+    reply.value = "Josh, I'm alive and I'm sorry. Shows I want to see: " + s + ". My Masquerade vote: " + v + ".";
+    voteButtons.forEach(function (b) {
+      b.setAttribute("aria-pressed", b.getAttribute("data-vote") === vote.value ? "true" : "false");
+    });
+  }
+
+  function remember() {
+    try { localStorage.setItem("mq-vote", vote.value); localStorage.setItem("mq-shows", shows.value); } catch (e) {}
+  }
+
+  function copy(text, done, failed) {
+    try {
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(done, failed);
+      } else { failed(); }
+    } catch (e) { failed(); }
+  }
+
+  try {
+    var savedVote = localStorage.getItem("mq-vote");
+    var savedShows = localStorage.getItem("mq-shows");
+    if (savedVote && CAST[savedVote]) vote.value = savedVote;
+    if (savedShows) shows.value = savedShows;
+  } catch (e) {}
+  build();
+
+  shows.addEventListener("input", function () { build(); remember(); copyStatus.textContent = ""; });
+  vote.addEventListener("change", function () { build(); remember(); copyStatus.textContent = ""; });
+
+  voteButtons.forEach(function (b) {
+    b.addEventListener("click", function () {
+      var v = b.getAttribute("data-vote");
+      var status = document.getElementById("st-" + v.replace(":", ""));
+      vote.value = v; build(); remember();
+      document.querySelectorAll(".vote .status").forEach(function (s) { s.textContent = ""; });
+      copy("My Masquerade vote: " + voteLine(v) + ".",
+        function () { status.textContent = "Copied. Paste it in the chat."; },
+        function () { status.textContent = "Saved. Your vote is in the reply box at the bottom of the page."; });
+    });
+  });
+
+  copyBtn.addEventListener("click", function () {
+    copy(reply.value,
+      function () { copyStatus.textContent = "Copied. Now paste it and press send."; },
+      function () { reply.focus(); reply.select(); copyStatus.textContent = "Couldn't copy from here. The reply is selected, so copy it by hand."; });
+  });
+
+  function go(id) {
+    var el = document.getElementById(id);
+    if (!el) return;
+    if (el.tagName === "DETAILS") el.open = true;
+    el.scrollIntoView({ behavior: calm ? "auto" : "smooth", block: "start" });
+  }
+  document.querySelectorAll("a[data-jump]").forEach(function (a) {
+    a.addEventListener("click", function (e) { e.preventDefault(); go(a.getAttribute("href").slice(1)); });
+  });
+  if (location.hash.length > 1) go(location.hash.slice(1));
+})();
+</script>
+
+</body></html>
